@@ -17,15 +17,15 @@ public class Post {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false, length=100)
     private String title;
+
+    @Column(name = "body", nullable = false)
+    private String body;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @Column(name = "body")
-    private String body;
 
     @Column(name = "date_posted")
     private LocalDateTime datePosted;
