@@ -14,10 +14,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .anyRequest()
-                        .permitAll());
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .anyRequest().permitAll());
         // use basic authentication
         http.httpBasic();
+
+        // disable csrf
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         return http.build();
     }
