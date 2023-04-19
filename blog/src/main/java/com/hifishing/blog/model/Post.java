@@ -20,6 +20,9 @@ public class Post {
     @Column(name = "title", nullable = false, length=100)
     private String title;
 
+    @Column(name = "description", length=200)
+    private String description;
+
     @Column(name = "body", nullable = false)
     private String body;
 
