@@ -63,12 +63,23 @@ body {
     color: black;
 }
 
+/* SIDEBAR STYLING */
+
 .sidebar-container {
     margin: 0px;
     padding: 10px;
     background-color: white;
     flex: 1;
     flex-wrap: wrap;
+}
+
+/* FOOTER STYLING */
+
+.footer {
+    display: flex;
+    background-color: gray;
+    margin-top: auto;
+    justify-content: center;
 }
 
 /* GLOBAL CONFIG */
