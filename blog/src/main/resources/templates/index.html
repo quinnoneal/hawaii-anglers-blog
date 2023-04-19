@@ -2,10 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hawaii Anglers</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <p class="text" th:text="'This is a certified hood classic'"/>
+    <div class="header">
+        <a class="logo" th:href="@{/}">
+            <img class="logo-img" src="/images/logo-img.png" alt="Hook Logo Image">
+            <h1>Hawaii Anglers</h1>
+        </a>
+        <ul class="right-links">
+           <li><a href="./tutorials">Tutorials</a></li>
+           <li><a href="./shop">Shop</a></li>
+           <li><a href="./whipping">Whipping</a></li>
+           <li><a href="./dunking">Dunking</a></li>
+           <li><a href="./posts">Posts</a></li>
+           <li><a href="./sign-in">Sign In</a></li>
+           <li><a href="./logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <div class="posts-container">
+            <div class="post" th:each="post : ${posts}">
+                <h1>
+                    <a th:href="@{'/posts/' + ${post.id}}"
+                       th:text="${post.title}"
+                       class="post-title">Title</a>
+                </h1>
+                <h5 th:text="'Published on ' + ${post.datePosted}">Date Posted</h5>
+                <p th:text="${post.description}">Post Description</p>
+            </div>
+        </div>
+        <div class="sidebar-container">
+            <div class="sidebar-items">
+                <div class="sidebar-item">
+                    <div>
+                        Side bar item 1
+                    </div>
+                    <p>
+                        item 1 description
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
