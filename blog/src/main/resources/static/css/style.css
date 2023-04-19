@@ -1,3 +1,88 @@
-.text {
-    color: blue;
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: aqua;
+    height: 100vh;
+}
+
+/* HEADER STYLING */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(89, 255, 238);
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: black;
+    padding: 0px;
+}
+
+.logo-img {
+    width: auto;
+    height: 50px;
+}
+
+.right-links {
+    display: flex;
+}
+
+/* BODY STYLING */
+
+.body {
+    display: flex;
+    margin: 50px;
+    gap: 50px;
+}
+
+.posts-container {
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 4;
+    background-color: burlywood;
+}
+
+.post {
+    flex: 1;
+    padding: 10px;
+    margin: 10px;
+    min-width: 300px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.post-title {
+    color: black;
+}
+
+.sidebar-container {
+    margin: 0px;
+    padding: 10px;
+    background-color: white;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+/* GLOBAL CONFIG */
+
+a {
+    /* this removes the line under our links */
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+ul {
+    /* this removes the bullet points from links */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
