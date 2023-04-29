@@ -59,6 +59,11 @@ body {
     background-color: white;
 }
 
+.individual-post-container {
+    display: flex;
+    flex: 3;
+}
+
 .post-title {
     color: black;
 }
@@ -66,10 +71,10 @@ body {
 /* SIDEBAR STYLING */
 
 .sidebar-container {
+    width: 150px;
     margin: 0px;
     padding: 10px;
     background-color: white;
-    flex: 1;
     flex-wrap: wrap;
 }
 
