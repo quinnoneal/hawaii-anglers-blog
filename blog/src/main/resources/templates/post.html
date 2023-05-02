@@ -26,7 +26,8 @@
     <div class="individual-post-container">
         <div class="post">
             <h2 class="text-center" th:text="${post.title}">Title</h2>
-            <h5 class="text-muted" th:text="'Created on ' + ${post.datePosted}">Posted on</h5>
+            <h5 th:text="'Written by ' + ${post.user.firstName}">User First Name</h5>
+            <h5 class="text-muted" th:text="'Published on ' + ${post.datePosted}">Posted on</h5>
             <p th:text="${post.body}">Body text</p>
         </div>
     </div>

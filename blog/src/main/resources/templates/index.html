@@ -30,6 +30,7 @@
                        th:text="${post.title}"
                        class="post-title">Title</a>
                 </h1>
+                <h5 th:text="'Written by ' + ${post.user.firstName}">User First Name</h5>
                 <h5 th:text="'Published on ' + ${post.datePosted}">Date Posted</h5>
                 <p th:text="${post.description}">Post Description</p>
             </div>
