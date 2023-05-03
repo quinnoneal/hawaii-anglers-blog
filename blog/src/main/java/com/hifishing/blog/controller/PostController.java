@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
@@ -57,6 +58,7 @@ public class PostController {
 
     @PostMapping("/posts/new")
     public String saveNewPost(@ModelAttribute Post post) {
+        post.setDatePosted(LocalDateTime.now());
         postService.save(post);
         return "redirect:/posts/" + post.getId();
     }
