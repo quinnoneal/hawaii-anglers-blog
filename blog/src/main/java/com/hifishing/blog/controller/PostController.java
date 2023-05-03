@@ -33,9 +33,13 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String getPost(@PathVariable Long id, Model model) {
-        Post post = postService.findById(id);
-        model.addAttribute("post", post);
-        return "post";
+        Optional<Post> optionalPost = postService.findById(id);
+        if(optionalPost.isPresent()) {
+            model.addAttribute("post", optionalPost.get());
+            return "post";
+        } else {
+            return "404";
+        }
     }
 
     @GetMapping("/posts/new")
