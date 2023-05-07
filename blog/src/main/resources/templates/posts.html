@@ -23,30 +23,16 @@
 </div>
 
 <div class="body">
-    <div class="articles-container">
-        <div class="article">
-            <h1>What is Lorem Ipsum?</h1>
-            <p>Date Published: May 3, 2022</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-        </div>
-        <div class="article">
-            <h1>What is Lorem Ipsum?</h1>
-            <p>Date Published: May 3, 2022</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-        </div>
-        <div class="article">
-            <h1>What is Lorem Ipsum?</h1>
-            <p>Date Published: May 3, 2022</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-        </div>
-        <div class="article">
-            <h1>What is Lorem Ipsum?</h1>
-            <p>Date Published: May 3, 2022</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
+    <div class="posts-container">
+        <div class="post" th:each="post : ${posts}">
+            <h1>
+                <a th:href="@{'/posts/' + ${post.id}}"
+                   th:text="${post.title}"
+                   class="post-title">Title</a>
+            </h1>
+            <h5 th:text="'Written by ' + ${post.user.firstName}">User First Name</h5>
+            <h5 th:text="'Published on ' + ${post.datePosted}">Date Posted</h5>
+            <p th:text="${post.description}">Post Description</p>
         </div>
     </div>
     <div class="sidebar-container">
@@ -61,6 +47,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="footer">
+    <p>© 2023 HAWAII ANGLERS</p>
 </div>
 
 </body>
