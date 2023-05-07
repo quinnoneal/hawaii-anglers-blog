@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,7 +29,9 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String returnPostsPage() {
+    public String returnPostsPage(Model model) {
+        List<Post> posts = postService.findAll();
+        model.addAttribute("posts", posts);
         return "posts";
     }
 
