@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -47,8 +48,9 @@ public class PostController {
     }
 
     @GetMapping("/posts/new")
-    public String createNewPost(Model model) {
-        Optional<User> optionalUser = userService.findByEmail("quinnoneal@hotmail.com");
+    public String createNewPost(Model model, Principal principal) {
+        // TODO: figure out principal
+        Optional<User> optionalUser = userService.findByUsername(principal.getName());
         if(optionalUser.isPresent()) {
             Post post = new Post();
             post.setUser(optionalUser.get());
