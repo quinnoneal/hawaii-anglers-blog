@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -34,4 +36,21 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authority",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+    private Set<Authority> authorities = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", authorities=" + authorities +
+                '}';
+    }
 }
