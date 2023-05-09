@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Hawaii Anglers</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <!-- CUSTOM FONT IMPORT -->
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/gidole-regular" type="text/css"/>
 </head>
 <body>
     <div class="header">
@@ -17,8 +20,8 @@
            <li><a href="./whipping">Whipping</a></li>
            <li><a href="./dunking">Dunking</a></li>
            <li><a href="./posts">Posts</a></li>
-           <li><a href="./sign-in">Sign In</a></li>
-           <li><a href="./logout">Logout</a></li>
+           <li><a th:href="@{/sign-in}">Sign In</a></li>
+           <li><a th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>
 
