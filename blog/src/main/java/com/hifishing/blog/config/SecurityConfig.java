@@ -5,6 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,10 +20,9 @@ public class SecurityConfig {
             "/",
             "/shop",
             "/posts",
-            "/sign-in",
             "/register",
             "/h2-console/**",
-            "/resources/**"
+            "/resources"
     };
 
     @Bean
@@ -27,14 +31,36 @@ public class SecurityConfig {
                 configurer
                         .requestMatchers(WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.GET, "/posts/**").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
         // use basic authentication
         http.httpBasic();
 
+        // login handling and validation
+        http
+                .formLogin()
+                .loginPage("/sign-in")
+                .loginProcessingUrl("/sign-in")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/sign-in?error")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/sign-in?logout")
+                .and()
+                .httpBasic();
+
         // disable csrf
-        //http.csrf().disable();
-        //http.headers().frameOptions().disable();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
