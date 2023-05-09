@@ -1,7 +1,10 @@
 package com.hifishing.blog.config;
 
+import com.hifishing.blog.model.Authority;
 import com.hifishing.blog.model.Post;
 import com.hifishing.blog.model.User;
+import com.hifishing.blog.service.AuthorityService;
+import com.hifishing.blog.service.AuthorityServiceImpl;
 import com.hifishing.blog.service.PostService;
 import com.hifishing.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +12,27 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class SeedData implements CommandLineRunner {
 
     private final UserService userService;
     private final PostService postService;
+    private final AuthorityService authorityService;
 
     @Autowired
-    public SeedData(UserService userService, PostService postService) {
+    public SeedData(UserService userService, PostService postService, AuthorityService authorityService) {
         this.userService = userService;
         this.postService = postService;
+        this.authorityService = authorityService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+
+        // USER
         User user = new User();
         user.setFirstName("Quinn");
         user.setLastName("O'Neal");
@@ -31,8 +40,26 @@ public class SeedData implements CommandLineRunner {
         user.setUsername("qdawg808");
         user.setPassword("password");
 
+        // AUTHORITY
+        Set<Authority> auths = new HashSet<>();
+        Authority userAuth = new Authority();
+        userAuth.setName("ROLE_USER");
+        Authority modAuth = new Authority();
+        modAuth.setName("ROLE_MODERATOR");
+        Authority adminAuth = new Authority();
+        adminAuth.setName("ROLE_ADMIN");
+        authorityService.save(userAuth);
+        authorityService.save(modAuth);
+        authorityService.save(adminAuth);
+        auths.add(userAuth);
+        auths.add(modAuth);
+        auths.add(adminAuth);
+        user.setAuthorities(auths);
+
         userService.save(user);
 
+
+        // POSTS
         Post post = new Post();
         post.setUser(user);
         post.setTitle("My First Blog Post!");
